@@ -1,0 +1,165 @@
+
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Радар КФ — Тюмень</title>
+
+<link rel="stylesheet"
+href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
+
+<style>
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: #10141c;
+  color: white;
+  font-family: Arial, sans-serif;
+}
+
+header {
+  padding: 18px;
+  background: #171e29;
+  text-align: center;
+}
+
+header h1 {
+  margin: 0;
+  color: #00e5a0;
+  font-size: 26px;
+}
+
+header p {
+  color: #9ba8b7;
+  margin: 8px 0 0;
+}
+
+.tariffs {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 8px;
+  padding: 12px;
+}
+
+.tariff {
+  background: #202a38;
+  padding: 14px 4px;
+  border-radius: 12px;
+  text-align: center;
+}
+
+.tariff strong {
+  display: block;
+  color: #00e5a0;
+  font-size: 20px;
+}
+
+.tariff span {
+  color: #b3bdca;
+  font-size: 12px;
+}
+
+.section {
+  padding: 12px;
+}
+
+.section h3 {
+  margin: 4px 0 12px;
+}
+
+.point {
+  background: #202a38;
+  border-radius: 12px;
+  padding: 14px;
+  margin-bottom: 10px;
+}
+
+.point b {
+  color: #00e5a0;
+}
+
+#map {
+  height: 48vh;
+  min-height: 300px;
+  border-radius: 12px;
+}
+
+.note {
+  font-size: 12px;
+  color: #ffcc66;
+  padding: 12px;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <h1>РАДАР КФ</h1>
+  <p>Тюмень • Радар спроса</p>
+</header>
+
+<div class="tariffs">
+  <div class="tariff">
+    <strong>Э</strong>
+    <span>Эконом</span>
+  </div>
+  <div class="tariff">
+    <strong>К</strong>
+    <span>Комфорт</span>
+  </div>
+  <div class="tariff">
+    <strong>К+</strong>
+    <span>Комфорт+</span>
+  </div>
+  <div class="tariff">
+    <strong>Д</strong>
+    <span>Детский</span>
+  </div>
+</div>
+
+<div class="section">
+  <h3>📍 Карта спроса</h3>
+  <div id="map"></div>
+</div>
+
+<div class="section">
+  <h3>Коэффициенты</h3>
+
+  <div class="point">
+    <b>Точка А — текущее местоположение</b>
+    <p>КФ: пока нет данных</p>
+  </div>
+
+  <div class="point">
+    <b>Точка Б — район назначения</b>
+    <p>КФ: пока нет данных</p>
+  </div>
+</div>
+
+<div class="note">
+  Демонстрационный интерфейс. Реальные коэффициенты
+  Яндекс Go пока не подключены.
+</div>
+
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+<script>
+const map = L.map('map').setView([57.1522, 65.5272], 12);
+
+L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+  attribution: '&copy; OpenStreetMap'
+}).addTo(map);
+
+L.marker([57.1522, 65.5272])
+  .addTo(map)
+  .bindPopup('Тюмень — центр радара')
+  .openPopup();
+</script>
+
+</body>
+</html>
